@@ -37,7 +37,7 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
     if (err) { return callback(err); }
 
     callback(null, isMatch);
-  })
+  });
 }
 
 // Create the model class
