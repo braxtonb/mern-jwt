@@ -48,3 +48,5 @@ Work in progress.
 [Passport](http://passportjs.org/) - authentication library for Node.js
 
 [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) - dev tools for redux
+
+[Redux Thunk](https://github.com/gaearon/redux-thunk) - asynchronous dispatch of actions to the redux store
