@@ -11,9 +11,7 @@ class Signin extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   onSubmit({ email, password }) {
-    if (email.length > 0 && password.length > 0) {
-      this.props.signinUser({ email, password });
-    }
+    this.props.signinUser({ email, password });
   }
 
   renderAlert() {
@@ -39,6 +37,7 @@ class Signin extends Component {
           className="form-control"
           {...field.input}
         />
+        {field.meta.touched && <div className="error">{field.meta.error}</div>}
       </fieldset>
     );
 
@@ -67,6 +66,20 @@ const mapStateToProps = state => ({
   errorMessage: state.auth.error,
 });
 
+const validate = (formProps) => {
+  const errors = {};
+
+  if (!formProps.email) {
+    errors.email = 'Enter an email!';
+  }
+
+  if (!formProps.password) {
+    errors.password = 'Enter a password!';
+  }
+
+  return errors;
+};
+
 Signin.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   signinUser: PropTypes.func.isRequired,
@@ -74,6 +87,7 @@ Signin.propTypes = {
 };
 
 export default reduxForm({
+  validate,
   form: 'signin',
 })(
   connect(mapStateToProps, { signinUser })(Signin),
