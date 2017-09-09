@@ -6,10 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import history from './router/history';
 
-import App from './components/app';
-import Header from './components/Header';
-import Signin from './components/auth/Signin';
-import reducers from './reducers';
+import App from './components/App/App';
+import Header from './components/Header/Header';
+import Signin from './components/Signin/Signin';
+import reducers from './store/reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 

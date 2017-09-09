@@ -1,7 +1,7 @@
 import {
   AUTH_USER,
   UNAUTH_USER,
-} from '../actions/types';
+} from './authentication.types';
 
 export default function (state = {}, action) {
   switch (action.type) {

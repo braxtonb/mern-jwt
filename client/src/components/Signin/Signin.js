@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
-import { signinUser } from '../../actions';
+import { signinUser } from '../../store/Authentication/authentication.actions';
 
 class Signin extends Component {
   constructor(props) {

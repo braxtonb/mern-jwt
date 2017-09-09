@@ -1,7 +1,7 @@
 import axios from 'axios';
-import history from '../router/history';
+import history from '../../router/history';
 
-import { AUTH_USER } from './types';
+import { AUTH_USER } from './authentication.types';
 
 const ROOT_URL = 'http://localhost:3090';
 
