@@ -9,6 +9,8 @@ import history from './router/history';
 import App from './components/App/App';
 import Header from './components/Header/Header';
 import Signin from './components/Signin/Signin';
+import Signup from './components/Signup/Signup';
+import Signout from './components/Signout/Signout';
 import reducers from './store/reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -18,12 +20,16 @@ ReactDOM.render(
     <Router history={history}>
       <div>
         <Header />
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/signin" component={Signin} />
-          <Route render={() => <p>Route not found!</p>} />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={App} />
+            <Route path="/signin" component={Signin} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/signout" component={Signout} />
+            <Route render={() => <p>Route not found!</p>} />
+          </Switch>
+        </div>
       </div>
     </Router>
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('.container-fluid'));
