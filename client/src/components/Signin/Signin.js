@@ -9,6 +9,7 @@ class Signin extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.renderAlert = this.renderAlert.bind(this);
   }
   onSubmit({ email, password }) {
     this.props.signinUser({ email, password });
@@ -26,10 +27,8 @@ class Signin extends Component {
     return '';
   }
 
-  render() {
-    const { handleSubmit } = this.props;
-
-    const renderField = field => (
+  renderField(field) {
+    return (
       <fieldset className="form-group">
         <label htmlFor={field.input.name}>{field.label}</label>
         <input
@@ -40,6 +39,10 @@ class Signin extends Component {
         {field.meta.touched && <div className="error">{field.meta.error}</div>}
       </fieldset>
     );
+  }
+
+  render() {
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -47,13 +50,13 @@ class Signin extends Component {
           label="Email"
           name="email"
           type="text"
-          component={renderField}
+          component={this.renderField}
         />
         <Field
           label="Password"
           name="password"
           type="password"
-          component={renderField}
+          component={this.renderField}
         />
         {this.renderAlert()}
         <button type="submit" className="btn btn-primary">Sign in</button>

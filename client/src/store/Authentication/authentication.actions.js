@@ -5,15 +5,18 @@ import {
   AUTH_USER,
   AUTH_ERROR,
   UNAUTH_USER,
+  FETCH_MESSAGE,
 } from './authentication.types';
 
 const ROOT_URL = 'http://localhost:3090';
 
+// Dispatch helper function to dispatch error action
 export const authError = error => ({
   type: AUTH_ERROR,
   payload: error,
 });
 
+// Sign in user
 export const signinUser = ({ email, password }) => (
   (dispatch) => {
     // Submit email/password to the server
@@ -35,6 +38,7 @@ export const signinUser = ({ email, password }) => (
   }
 );
 
+// Sign up user
 export const signupUser = ({ email, password }) => (
   (dispatch) => {
     // Submit email/password to the server
@@ -49,7 +53,6 @@ export const signupUser = ({ email, password }) => (
         history.push('/feature');
       })
       .catch(({ response }) => {
-        console.log(response);
         // If request is bad...
         // - Show an error to the user
         dispatch(authError(response.data.error));
@@ -57,6 +60,7 @@ export const signupUser = ({ email, password }) => (
   }
 );
 
+// Sign out user
 export const signoutUser = () => {
   localStorage.removeItem('token');
 
@@ -64,3 +68,21 @@ export const signoutUser = () => {
     type: UNAUTH_USER,
   };
 };
+
+// Fetch message from authenticated server route
+export const fetchMessage = () => (
+  (dispatch) => {
+    axios.get(ROOT_URL, {
+      headers: { authorization: localStorage.getItem('token') },
+    })
+      .then((response) => {
+        dispatch({
+          type: FETCH_MESSAGE,
+          payload: response.data.message,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }
+);
