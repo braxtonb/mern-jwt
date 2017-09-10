@@ -48,10 +48,11 @@ export const signupUser = ({ email, password }) => (
         // - redirect to the route '/feature'
         history.push('/feature');
       })
-      .catch(() => {
+      .catch(({ response }) => {
+        console.log(response);
         // If request is bad...
         // - Show an error to the user
-        dispatch(authError('Email is in use'));
+        dispatch(authError(response.data.error));
       });
   }
 );

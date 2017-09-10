@@ -11,6 +11,8 @@ import Header from './components/Header/Header';
 import Signin from './components/Signin/Signin';
 import Signup from './components/Signup/Signup';
 import Signout from './components/Signout/Signout';
+import Feature from './components/Feature/Feature';
+import RequireAuth from './hoc/RequireAuth/RequireAuth';
 import reducers from './store/reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -26,6 +28,7 @@ ReactDOM.render(
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/signout" component={Signout} />
+            <Route path="/feature" component={RequireAuth(Feature)} />
             <Route render={() => <p>Route not found!</p>} />
           </Switch>
         </div>
